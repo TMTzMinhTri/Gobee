@@ -1,24 +1,14 @@
-# README
+```sql
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CREATE USER minhtri;
+CREATE USER minhtri_read;
 
-Things you may want to cover:
+ALTER USER minhtri WITH SUPERUSER;
+ALTER USER minhtri with encrypted password 'minhtri';
 
-* Ruby version
+ALTER USER minhtri_read WITH SUPERUSER;
+ALTER USER minhtri_read with encrypted password 'minhtri_read';
 
-* System dependencies
+create database tole_dev;
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
