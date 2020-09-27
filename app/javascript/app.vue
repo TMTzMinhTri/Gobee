@@ -1,22 +1,25 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <order-screen></order-screen>
   </div>
 </template>
 
 <script>
-export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
-  }
-}
+  import OrderScreen from './Screens/Order/index';
+  export default {
+    components: { OrderScreen },
+    data: function() {
+      return {
+        message: 'Hello Vue!',
+      };
+    },
+  };
 </script>
 
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
+<style>
+  /* @media only screen and (min-width: 600px) {
+    html {
+      display: none;
+    }
+  } */
 </style>

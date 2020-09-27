@@ -12,3 +12,10 @@ ALTER USER minhtri_read with encrypted password 'minhtri_read';
 create database tole_dev;
 
 ```
+
+reason_cancle
+
+- khách đổi ý
+- order nhầm
+- Hết hàng
+- khác
