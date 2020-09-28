@@ -1,6 +1,6 @@
 <template>
   <div :style="{ padding: '20px' }">
-    <a-input-search placeholder="Số diện thoại" size="large" @search="onSearch">
+    <a-input-search placeholder="Số diện thoại" size="large" @change="onSearch" v-model="phoneNumber" :maxLength="10">
       <a-button slot="enterButton">
         <a-checkbox @change="onChange">
           Nam
@@ -8,7 +8,7 @@
       </a-button>
     </a-input-search>
 
-    <a-input-search placeholder="Tên khách hàng" size="large" @search="onSearch">
+    <a-input-search placeholder="Tên khách hàng" size="large" @search="onSearch1">
       <a-button slot="addonAfter" @click="showModal">
         20 điểm
       </a-button>
@@ -20,14 +20,22 @@
 </template>
 
 <script>
+  import { searchPartner } from '../../../Api/Order';
   export default {
     data: () => ({
       visible: false,
       ModalText: 'Content of the modal',
       confirmLoading: false,
+      phoneNumber: 0,
     }),
     methods: {
-      onSearch: () => {},
+      onSearch: (e) => {
+        const value = e.target.value;
+        if (value.length === 10) {
+          searchPartner(value).then((rsp) => console.log(rsp));
+        }
+      },
+      onSearch1: (e) => {},
       onChange: () => {},
       showModal() {
         console.log('aa');
