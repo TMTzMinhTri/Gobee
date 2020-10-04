@@ -11,3 +11,5 @@ products = ['Espresso đá', 'Espresso sữa đã', 'Capuchino', 'Americano', 'E
 products.each do |x|
     Product.create({name: x, price: 15000})
 end
+
+Customer.create({name: "Tri", point: 10, gender: true, phone: "1234567890"})

@@ -1,6 +1,6 @@
-class Api::V1::ProductController < ApplicationController
+class Api::V1::ProductController < Api::BaseController
     def index
         product =  Product.all
-        render json: ProductSerializer.new(product).serializable_hash[:data]
+        success ProductSerializer.new(product)
     end
 end

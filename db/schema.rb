@@ -15,8 +15,18 @@ ActiveRecord::Schema.define(version: 2020_09_26_181105) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "pos_order", force: :cascade do |t|
-    t.integer "res_partner_id"
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.boolean "gender"
+    t.float "point", default: 0.0
+    t.date "date_of_birth"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
     t.string "code"
     t.integer "total_price"
     t.integer "quantity"
@@ -25,17 +35,17 @@ ActiveRecord::Schema.define(version: 2020_09_26_181105) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pos_order_line", id: false, force: :cascade do |t|
-    t.bigint "product_template_id", null: false
-    t.bigint "pos_order_id", null: false
+  create_table "orders_products", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
     t.integer "quantity"
     t.integer "price"
     t.integer "sub_total"
-    t.index ["pos_order_id"], name: "index_pos_order_line_on_pos_order_id"
-    t.index ["product_template_id"], name: "index_pos_order_line_on_product_template_id"
+    t.index ["order_id"], name: "index_orders_products_on_order_id"
+    t.index ["product_id"], name: "index_orders_products_on_product_id"
   end
 
-  create_table "product_template", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "price"
     t.string "sku"
@@ -43,22 +53,12 @@ ActiveRecord::Schema.define(version: 2020_09_26_181105) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "res_partner", force: :cascade do |t|
-    t.string "name"
-    t.string "phone"
-    t.boolean "gender"
-    t.float "point"
-    t.date "date_of_birth"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "voucher", force: :cascade do |t|
-    t.integer "res_partner_id"
+  create_table "vouchers", force: :cascade do |t|
+    t.integer "customer_id"
     t.string "code"
     t.string "description"
     t.date "expired_date"
-    t.integer "pos_order_id"
+    t.integer "order_id"
   end
 
 end

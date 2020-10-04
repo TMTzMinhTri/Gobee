@@ -19,3 +19,6 @@ reason_cancle
 - order nhầm
 - Hết hàng
 - khác
+
+* lich su trong ngay
+* payment
